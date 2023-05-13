@@ -1,0 +1,11 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    width: 100%;
+}
+#icon{
+    color: white;
+    padding-right: 2px;
+}

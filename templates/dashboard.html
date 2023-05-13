@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+     
+<div class="container">
+<div class="card">
+  <div class="row p-2">
+    <div class="col">
+    
+  
+<div class="text-center">       
+<button class="btn btn-success btn-circle btn-xl">Donor Count <span class="badge badge-dark">{% for r in row %} {{r[0]}} {% endfor %}</span></button>
+<br>
+<br>
+<button class="btn btn-primary btn-circle btn-xl">O+  <span class="badge badge-dark">{% for a in Opositive %} {{a[0]}} {% endfor %}</span></button> 
+<button class="btn btn-warning btn-circle btn-xl">O- <span class="badge badge-dark">{% for b in Onegative %} {{b[0]}}  {% endfor %}</span></button>
+<button class="btn btn-danger btn-circle btn-xl">A+  <span class="badge badge-dark"> {% for c in Apositive %} {{c[0]}}  {% endfor %}</span></button>
+<button class="btn btn-success btn-circle btn-xl">A- <span class="badge badge-dark">{% for d in Anegative %} {{d[0]}}  {% endfor %}</span></button>
+<button class="btn btn-success btn-circle btn-xl">B+  <span class="badge badge-dark">{% for e in Bpositive %} {{e[0]}}  {% endfor %}</span></button>
+<button class="btn btn-primary btn-circle btn-xl">B-  <span class="badge badge-dark">{% for f in Bnegative %} {{f[0]}}  {% endfor %}</span></button>
+<button class="btn btn-success btn-circle btn-xl">AB+  <span class="badge badge-dark">{% for g in ABpositive %} {{g[0]}}  {% endfor %}</span></button>
+<button class="btn btn-primary btn-circle btn-xl">AB-  <span class="badge badge-dark">{% for h in ABnegative %} {{h[0]}}  {% endfor %}</span></button>
+
+
+</div>       
+    
+        
+        
+  
+
+<div class="col-md-12 d-flex justify-content-center">
+    
+<div id="chart_div"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+
+// Create the data table.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Topping');
+  data.addColumn('number', 'Slices');
+  data.addRows([
+    ['O positive', {% for a in Opositive %} {{a[0]}}  {% endfor %}],
+    ['O negative', {% for b in Onegative %} {{b[0]}}  {% endfor %}],
+    ['A positive', {% for c in Apositive %} {{c[0]}}  {% endfor %}],
+    ['A negative', {% for d in Anegative %} {{d[0]}}  {% endfor %}],
+    ['B positive', {% for e in Bpositive %} {{e[0]}}  {% endfor %}],
+    ['B negative', {% for f in Bnegative %} {{f[0]}}  {% endfor %}],
+    ['AB positive', {% for g in ABpositive %} {{g[0]}}  {% endfor %}], 
+    ['AB negative', {% for h in ABnegative %} {{h[0]}}  {% endfor %}],
+  ]);
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Donor Blood Groups', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
+</script>
+    </div>
+    
+    
+        </div></div></div></div>
+  
+{% endblock %}
+    
+    
+
+
